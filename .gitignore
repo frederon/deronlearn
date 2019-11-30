@@ -1,0 +1,5 @@
+node_modules
+/video/*
+/public/images/*
+/db/db.json
+/sessions/*

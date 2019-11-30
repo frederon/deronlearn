@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  form(action="/auth", method="post").login-box  
+    img.logo(src="/images/deronlearn.svg", alt="deronLearn Logo")
+    .input__wrapper
+      label.label-form(for="email") Email
+      input.input-form#email(type="email", name="email", placeholder="email@email.com")
+    .input__wrapper
+      label.label-form(for="password") Password
+      input.input-form#password(type="password", name="password", placeholder="Password (At least 8 characters)")
+    input#login(type="submit", value="Login")

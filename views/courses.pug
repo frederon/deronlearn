@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  - var path = '/videos/' + courseId + '/' + videoId
+  if videoId && courseId
+    .course-container
+      .course-content
+        video#player(poster="", controls)
+          source(src=path, type="video/mp4")
+      .course-selection
+        - courseCount = 0
+        - course.modules.forEach((module) => { courseCount += module.chapters.length})
+        h1.course-name= course.name
+        span.course-progress Progress #{videoId} / #{courseCount}
+        each moduleData in course.modules
+          .module
+            h2 ##{moduleData.id} #{moduleData.name}
+            each chapter in moduleData.chapters
+              a.chapter-name(href=`/courses/${courseId}/${chapter.video}`) ##{chapter.video} #{chapter.name}
+
+  else
+    h1 Course List
+    .course-list
+      each course in courses
+        - courseCount = 0
+        - course.modules.forEach((module) => { courseCount += module.chapters.length})
+        - moduleCount = course.modules.length
+        .course-details
+          img.course-poster(src="/images/course1.png", alt="Course Poster")
+          h2.course-name= course.name
+          span.course-module-count Module Counts: #{moduleCount}
+          span.course-video-count Video Counts: #{courseCount}
+          span.course-duration Duration: #{course.duration}
+          a.start-learning(href=`/courses/${course.id}/1`) Start Learning
+    a.logout(href="/logout") Logout
