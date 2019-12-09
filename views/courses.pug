@@ -25,17 +25,18 @@ block content
                 a.chapter-name(href=`/courses/${courseId}/${chapter.video}`) ##{chapter.video} #{chapter.name}
 
   else
-    h1 Course List
-    .course-list
-      each course in courses
-        - courseCount = 0
-        - course.modules.forEach((module) => { courseCount += module.chapters.length})
-        - moduleCount = course.modules.length
-        .course-details
-          img.course-poster(src="/images/course1.png", alt="Course Poster")
-          h2.course-name= course.name
-          span.course-module-count Module Counts: #{moduleCount}
-          span.course-video-count Video Counts: #{courseCount}
-          span.course-duration Duration: #{course.duration}
-          a.start-learning(href=`/courses/${course.id}/1`) Start Learning
+    .course-list-container
+      h1 Course List
+      .course-list
+        each course in courses
+          - courseCount = 0
+          - course.modules.forEach((module) => { courseCount += module.chapters.length})
+          - moduleCount = course.modules.length
+          .course-details
+            img.course-poster(src="/images/" + course.id + ".png", alt="Course Poster")
+            h2.course-name= course.name
+            span.course-module-count Module Counts: #{moduleCount}
+            span.course-video-count Video Counts: #{courseCount}
+            span.course-duration Duration: #{course.duration}
+            a.start-learning(href=`/courses/${course.id}/2`) Start Learning
     a.logout(href="/logout") Logout
